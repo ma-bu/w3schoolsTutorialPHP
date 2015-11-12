@@ -3,10 +3,23 @@
 <?php
     global $tilte;
     global $charset;
+    global $videoURL;
+    global $videoType;
+    global $videoList;
+
+    $videoList = array("./video/DramaticChipmunk.webm","./video/LamasMitHueten.webm");
+
+    #set the URL to the video here:
+    $videoURL = "./video/DramaticChipmunk.webm";
+
+    #set the video type here
+    #$videoType = "video/mp4";
+    #$videoType = "video/ogg";
+    $videoType = "video/webm";
 
 
     //set Meta Info
-    $title = "PHP - Tutorial Testpage";
+    $title = "PHP - Testpage";
     $charset = "UTF-8";
 ?>
 
@@ -110,6 +123,24 @@
                 var_dump($cars[$i]);
             }
             ?>
+
+            <video src="<?php echo $videoURL?>" type="<?php echo $videoType?>" width="400px" controls>
+            </video>
+
+            <video width="100%" autoplay loop id="video1">
+                <source src="<?php echo $videoURL?>" type="<?php echo $videoType?>">
+                Your browser does not support html5 vidoe. It's time to get updated ;)
+            </video>
+
+            <video width="100%" autoplay>
+                <?php
+                    #loop through the video urls
+                    foreach($videoList as $url){
+                        echo "<source src='".$url."' type='".$videoType."'>";
+                    }
+                ?>
+                Your browser does not support html5 vidoe. It's time to get updated ;
+            </video>
 
         </div> <!-- center -->
     </body>

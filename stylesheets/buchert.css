@@ -1,0 +1,409 @@
+/* >>> COMMON <<< */
+
+/* set general font family*/
+*{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* removes the genaral margin and padding of elements to each other*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h1,h2,h3,h4,h5,h6,label{
+    margin-bottom: 15px;
+}
+
+p,a,tr,td,table,ul,ol,li,thead,tbody{
+    margin-bottom: 5px;
+}
+/*set different types of lists e.g. <ul type="circle">...</ul>*/
+/*types of unordered lists*/
+ul.circle{list-style-type: circle;}
+ul.square{list-style-type: square;}
+ul.disc{list-style-type: disc ;}
+/*types of ordered lists*/
+ol.upper-roman{list-style-type: upper-roman;}
+ol.lower-roman{list-style-type: lower-roman;}
+ol.upper-alpha{list-style-type: upper-alpha;}
+ol.lower-alpha{list-style-type: lower-alpha;}
+ol.upper-latin{list-style-type: upper-latin;}
+ol.lower-latin{list-style-type: lower-latin;}
+ol.lower-greek{list-style-type: lower-greek;}
+
+hr{
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    border-color: #aaaaaa;
+}
+
+hr[class="hr-white"]{
+    border-color: white;
+}
+
+/* >>> FONT <<<< */
+
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
+
+/*has to be a div sourrounding the text*/
+.center-vertically-parent{
+    position: relative;
+}
+/*has to be span in which the text is*/
+.center-vertically-child{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 30%;
+    margin-top:25%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.font-white{
+    color: white;
+}
+
+.font-green{
+    color: #6db33f;
+}
+
+.font-grey{
+    color: #555555;
+}
+
+.float-left{
+    float:left;
+}
+
+.float-right{
+    float:right;
+}
+
+/* >>> BUTTONS <<< */
+
+/* standard Button with round corners*/
+.btn-bu{
+    font-size: 16px;
+    padding:16px;
+    width: auto;
+    border: 1px;
+    border-radius:40px;
+    margin: 5px;
+}
+.btn-bu:hover{
+    background-color: white;
+}
+
+/* transparent button with round corners*/
+.btn-bu-inv{
+    font-size: 16px;
+    color: white;
+    padding:16px;
+    width: auto;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    border-radius:40px;
+    margin: 5px;
+    background-color: transparent;
+}
+.btn-bu-inv:hover{
+    background-color: white;
+    color: black;
+}
+
+/* button with background color formed like a leaf*/
+.btn-leaf{
+    font-size: 16px;
+    padding:16px;
+    width: auto;
+    border: 1px;
+    margin: 5px;
+    border-top-left-radius:4px;
+    border-top-right-radius: 45px;
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 4px;
+
+}
+.btn-leaf:hover{
+    background-color: white;
+}
+
+/* leaf button with transparent background*/
+.btn-leaf-inv{
+    font-size: 16px;
+    color: white;
+    padding:16px;
+    width: auto;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    margin: 5px;
+    background-color: transparent;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 45px;
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 5px;
+}
+.btn-leaf-inv:hover{
+    background-color: white;
+    color: black;
+}
+
+/* green version of all Buttons WITH BACKGROUND-COLOR*/
+.btn-green{
+    background-color: #6db33f;
+}
+.btn-green:hover{
+    background-color: green;
+    color: white;
+}
+
+/* green version of all Buttons WITH TRANSPARENT BACKGROUND
+* HAS TO BE COMBINED WITH CLASS btn-bu-inv !!!!!!!
+*/
+.btn-inv-green{
+    border-color: #6db33f;
+    color: #6db33f;
+}
+.btn-inv-green:hover{
+    background-color: #6db33f;
+    color: white;
+}
+
+/* larger button in buchert style*/
+.btn-bu-lg{
+    font-size: 20px;
+    padding: 20px;
+}
+
+/*fixed button to scroll to the top of the page*/
+.go-top{
+    position: fixed;
+    /*bottom: 90px;*/
+    top: 20px;
+    right: 1%;
+    background-color: black;
+    /*color: #00bbff;*/
+    color: green;
+    opacity: 0.3;
+    z-index: 100;
+}
+
+/* >>> HEADER AND FOOTER <<< */
+
+.header-bu{
+    background-color: #444444;
+    height: auto;
+    padding: auto;
+
+   /* margin-bottom: 5px; */
+}
+
+/*sticky header*/
+.header-sticky{
+    position: fixed;
+    top: 0px;
+    left:0px;
+    right: 0px;
+}
+
+/*div for the buttons in the <nav> in the header. Float is right*/
+.nav-head-bu {
+    float: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
+.footer-bu{
+    height: auto;
+    min-height: 8vh;
+    background-color: #808080;
+    color: #bbbbbb;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/*footer with fixed position at the page bottom*/
+.footer-sticky{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    /* margin-left: 10%;
+    margin-right: 10%; */
+}
+
+/* div bock which makes space to the top of the sticky footer
+*  helps thet the last conetent area is not hidden behind the stick footer
+*  set it above the footer (between footer and content)
+*/
+.spacer-stickyFooter{
+    /*height & min-height (height NOT auto!) must be the same as the footer-bu hight*/
+    min-height:8vh;
+    height: auto;
+}
+
+/* >>> DIVs <<< */
+
+.container-bu{
+    padding-top: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 10px;
+}
+
+/*center a div on the screen*/
+.center{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    /*if the div must be wider change the width*/
+}
+
+/*
+* div as scrollbox with fixed height but more content
+* content will be scrolled down in this box at overflow
+*/
+.div-scroll{
+    /*fix the hight in vmin, vmax, vh, vw, % or px*/
+    height: 100%;
+    overflow: scroll;
+    /*show scrollbar only on one axis*/
+    /*
+    overflow-x: scroll;
+    overflow-y:scroll;
+    */
+
+    /*scrollable but no scrollbar*/
+    /*
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    */
+}
+
+/*makes the font color of a <a> white and avoids a underline*/
+.link-white{
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+}
+.link-white:hover{
+    color: #6db33f;
+}
+
+/*with this class you can put 3 divs next to each other in manner of columns*/
+.div-threeCols{
+    float: left;
+    width: 32%;
+    margin-left: 1%;
+    margin-top: 5px;
+}
+
+/*with this class you can put 2 divs next to each other in manner of columns*/
+.div-twoCols{
+    float: left;
+    width: 49%;
+    margin-left: 1%;
+}
+
+/* to force linebreak in a table cell column
+* the <table> needs .table-fixed and the paricular <td> needs td-table-fixed-linebreak
+*  this forces a newline within a table cell and dont changes the cells size by too big content
+*/
+.table-fixed{
+    table-layout: fixed;
+    width: 100%;
+}
+.td-table-fixed-linebreak{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/*---------------------------------------------------*/
+/* -------->>>> SPECIAL CLASSES AND IDs <<<<-------- */
+/*---------------------------------------------------*/
+
+/*----------------------------------------------------------------------------------------------------------------------------------START*/
+/* Div Block with image as background layser and a content div overlaying that picture*/
+
+/* 3 Classes to make a div with a picture in it and a content div overlaying that picture
+*  requires: div with class wrapper (position of this div is relative to its surrounding)
+*             picture in the wrapper div used as background layer (position is absolute but according to the wrapping div)
+*             div within the wrapper as content div which overlays the picture (position is absolute but according to the wrapping div)
+*
+* --->>> the HEIGHT of each of those three classes MUST be exactly the same <<<-----
+*/
+
+/*the sourrounding wrapper div*/
+.wrapper-block-layer{
+    /*position of parent node has to be relative*/
+    position: relative;
+    height: 450px;
+    width: 100%;
+   /*margin-top: 5vmax;*/
+    /* if there is a fixed nav on top,margin-top must be the height of the fixed navbar --> then uncomment margin-top: */
+}
+/*the image background layer*/
+.img-background-layer{
+    /*position of the child whitch has to overlay the parent has to be absolute*/
+    position: absolute;
+    width: 100%;
+    height: 450px;
+    /*height must be the same as .wrapper-block height*/
+}
+/*the content div layer*/
+.content-block-layer{
+    /*position of the child whitch has to overlay the parent has to be absolute*/
+    position: absolute;
+    /*z-index puts this node in front of the parent block1*/
+    z-index: 100;
+    height: 450px;
+    width: 100%;
+}
+
+/*--------------------------------------*/
+/* Rotate text in Tables e.g. the thead */
+/*--------------------------------------*/
+
+/*rotated table-heads needs to be embedded like this: <th class="rotate"><div><span>**element**</span></div></th>*/
+th.rotate {
+    /* Something you can count on height is imported to be adopted to your particular use */
+    height: 250px;
+    white-space: nowrap;
+}
+th.rotate > div {
+    transform:
+        /* Magic Numbers */
+    translate(25px, 51px)
+        /* 45 is really 360 - 45 */
+    rotate(315deg);
+    width: 50px;
+}
+th.rotate > div > span {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+}
+/*------------------------------------------------------------------------------------------------------------------------------------END*/
