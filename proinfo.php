@@ -28,7 +28,7 @@
         </script>
 
         <div class="center">
-            <video id="mainScreen" width="100%" autoplay onended="nextVideo()">
+            <video id="mainScreen" width="60%" autoplay onended="launchVideo()" controls>
                 <source id="mainSource">
 
                 Your Browser does not support html5 video. It's time to get updatade ;)
@@ -36,7 +36,7 @@
 
             <br>
             <p class="text-center">
-                <button type="button" class="btn-bu btn-bu-inv" onclick="startVideo()">S T A R T</button>
+                <button type="button" class="btn-bu btn-bu-inv" onclick="launchVideo()">S T A R T</button>
                 <button id="controlButton" type="button" class="btn-bu btn-bu-inv" onclick="pausePlayVideo()">P A U S E</button>
             </p>
 
@@ -49,14 +49,19 @@
 
         <!-- script to handle a automatic playlist -->
         <script>
-
-
-            function nextVideo(){
+            /*
+            * function is needed to start playing the video list initial and
+            * calls itself each time a video in the appropriate <video> tag ends
+            * function call recursively by using the onended event of the <video> tag
+            * onended="launchVideo()"
+            * needs a static counter below the function itselfes
+            * */
+            function launchVideo(){
                 //create Array with all the video URLs
                 var videoList = [];
                 //push the URLs
                 videoList.push("./video/DramaticChipmunk.webm");
-                videoList.push("./video/DramaticLamasMitHueten.webm");
+                videoList.push("./video/LamasMitHueten.webm");
 
 
 
@@ -64,38 +69,17 @@
                 var mainScreen  = document.getElementById('mainScreen');
                 var mainSource  = document.getElementById('mainSource');
 
-                //set a counter
-                var count = 0;
+                document.getElementById('mainSource').setAttribute('src',videoList[launchVideo.count]);
 
-
-                document.getElementById('mainSource').setAttribute('src',videoList[count]);
+                //set the counter +1 if not at the end of the playlist and set it to 0 if every video has been played
+                launchVideo.count = (launchVideo.count == (videoList.length - 1)) ? 0 : launchVideo.count + 1;
 
                 mainScreen.load();
                 mainScreen.play();
             }
+            //initialize the static counter for the function launchVideo()
+            launchVideo.count = 0;
 
-            function startVideo(){
-                //create Array with all the video URLs
-                var videoList = [];
-                //push the URLs
-                videoList.push("./video/DramaticChipmunk.webm");
-                videoList.push("./video/DramaticLamasMitHueten.webm");
-
-
-
-                //get the properies of the video screen
-                var mainScreen  = document.getElementById('mainScreen');
-                var mainSource  = document.getElementById('mainSource');
-
-                //set a counter
-                var count = 0;
-
-                //set the actual URL as source
-                document.getElementById('mainSource').setAttribute('src',videoList[count]);
-                //load and play video
-                mainScreen.load();
-                mainScreen.play();
-            }
 
             function pausePlayVideo(){
                 var mainScreen = document.getElementById('mainScreen');
