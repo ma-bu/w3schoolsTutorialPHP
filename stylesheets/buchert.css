@@ -282,6 +282,11 @@ hr[class="hr-white"]{
     /*if the div must be wider change the width*/
 }
 
+.center-fullscreen{
+    height: 100%;
+    width: 100%;
+}
+
 /*
 * div as scrollbox with fixed height but more content
 * content will be scrolled down in this box at overflow
