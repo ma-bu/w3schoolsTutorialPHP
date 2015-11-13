@@ -28,16 +28,20 @@
         </script>
 
         <div class="center">
-            <video id="mainScreen" width="100%" autoplay>
-                <!--<source id="mainSource">-->
+            <video id="mainScreen" width="100%" autoplay onended="nextVideo()">
+                <source id="mainSource">
 
                 Your Browser does not support html5 video. It's time to get updatade ;)
             </video>
 
             <br>
             <p class="text-center">
-                <button type="button" class="btn-bu btn-bu-inv" onclick="nVideo()">P L A Y</button>
+                <button type="button" class="btn-bu btn-bu-inv" onclick="startVideo()">S T A R T</button>
+                <button id="controlButton" type="button" class="btn-bu btn-bu-inv" onclick="pausePlayVideo()">P A U S E</button>
             </p>
+
+            <!--message for Play/Pause-->
+            <p id="messagePausePlay" class="text-center"></p>
 
         </div>
 
@@ -45,80 +49,69 @@
 
         <!-- script to handle a automatic playlist -->
         <script>
-            function playVideoList(){
+
+
+            function nextVideo(){
                 //create Array with all the video URLs
                 var videoList = [];
                 //push the URLs
                 videoList.push("./video/DramaticChipmunk.webm");
                 videoList.push("./video/DramaticLamasMitHueten.webm");
 
-                alert("Array with URLs created successfully");
+
 
                 //get the properies of the video screen
                 var mainScreen  = document.getElementById('mainScreen');
                 var mainSource  = document.getElementById('mainSource');
 
-
-
-
-
-                for(var i = 0; i < videoList.length; i++){
-                    //if(mainScreen.ended){
-                        //set the URL to the source element within the video tag
-                        document.getElementById('mainSource').setAttribute('src',videoList[i]);
-                        //load and play the resource
-                        document.getElementById('mainScreen').load();
-                        douument.getElementById('mainScreen').play();
-                    //}
-
-                }
-            }
-
-            function nVideo(){
-                //create Array with all the video URLs
-                var videoList = [];
-                //push the URLs
-                videoList.push("./video/DramaticChipmunk.webm");
-                videoList.push("./video/DramaticLamasMitHueten.webm");
-
-                alert("Array with URLs created successfully");
-
-                //get the properies of the video screen
-                var mainScreen  = document.getElementById('mainScreen');
-                var mainSource  = document.getElementById('mainSource');
-
-                alert("1");
-
-                mainScreen.addEventListener('ended','nextVideo()');
-                alert("2");
-
-
+                //set a counter
                 var count = 0;
 
-                alert("3");
 
-                function nextVideo(){
-                    alert("4");
-                    count = (videoList.length-1) ? 0 : count;
-                    alert("5");
-
-                    document.getElementById('mainSource').setAttribute('src',videoList[count++]);
-                    alert("6");
-                    mainScreen.load();
-                    alert("7");
-                    mainScreen.play();
-                    alert("8");
-
-                }
-
-
-                alert("9");
                 document.getElementById('mainSource').setAttribute('src',videoList[count]);
-                alert("10");
+
                 mainScreen.load();
-                alert("11");
                 mainScreen.play();
-                alert("12");
+            }
+
+            function startVideo(){
+                //create Array with all the video URLs
+                var videoList = [];
+                //push the URLs
+                videoList.push("./video/DramaticChipmunk.webm");
+                videoList.push("./video/DramaticLamasMitHueten.webm");
+
+
+
+                //get the properies of the video screen
+                var mainScreen  = document.getElementById('mainScreen');
+                var mainSource  = document.getElementById('mainSource');
+
+                //set a counter
+                var count = 0;
+
+                //set the actual URL as source
+                document.getElementById('mainSource').setAttribute('src',videoList[count]);
+                //load and play video
+                mainScreen.load();
+                mainScreen.play();
+            }
+
+            function pausePlayVideo(){
+                var mainScreen = document.getElementById('mainScreen');
+                var button      = document.getElementById('controlButton');
+                var messagePausePlay = document.getElementById('messagePausePlay');
+
+                if(mainScreen.paused){
+                    mainScreen.play();
+                    button.innerHTML = "P A U S E";
+                    messagePausePlay.innerHTML = "";
+
+                } else {
+                    mainScreen.pause();
+                    button.innerHTML = "P L A Y";
+                    messagePausePlay.innerHTML = "Video paused --> klick Play to resume";
+                }
             }
 
         </script>
