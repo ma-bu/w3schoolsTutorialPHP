@@ -18,14 +18,6 @@ require('models/VideoInfo.php');
         <link rel="stylesheet" href="./stylesheets/buchert.css">
     </head>
     <body id="body">
-
-
-        <script>
-            var title = "<?php echo $info->getTitle();?>";
-
-            //alert("works "+title);
-        </script>
-
         <!-- div wraps the whole content and makes it possible to set the whole page fullscreen in the browser -->
         <!-- all page content is inserted here use like <body>-->
         <div id="content" class="center-fullscreen">
