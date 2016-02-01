@@ -1,41 +1,19 @@
 <!DOCTYPE html>
 
 <?php
-    //this script provides the meta information and global variables
-    global $charset; #html meta info
-    global $title; #the page title for html meta title
-    global $videoDirectory; #path to the directory where the videos are
-    global $videoDirectoryWEBM; #path to the directory where the webm videos are
-    global $videoDirectoryMP4; #path to the directory where the mp4 videos are
-    global $playlistURLsMP4; #array with the URLs of the MP4 videos in the video directory used for creating the Playlist
-    global $playlistURLsWEBM; #array with the URLs of the WEBM videos in the video directory used for creating the Playlist
-    global $formattedPlaylistURLsWEBM; #depreciated
-    global $formattedPlaylistURLSMP4; #depreciated
+#all class imports
+require('models/VideoInfo.php');
+?>
 
-
-    #SET THE GLOBAL PARAMETERS BELOW:
-    #------------------------------------
-    #set charset
-    $charset ="UTF-8";
-    #------------------------------------
-    #set Page title
-    $title = "PROINFO.TV";
-    #------------------------------------
-    #set the PATH TO THE VIDEO DIRECTORYs
-    $videoDirectoryWEBM ="./video/webm";
-    $videoDirectoryMP4 ="./video/mp4";
-    #------------------------------------
-
-    //open the directory with file content and write the filenames into an array
-    //use the function scandir(path) to get all the filenames in a directory
-    $playlistURLsMP4 = scandir($videoDirectoryMP4);
-    $playlistURLsWEBM = scandir($videoDirectoryWEBM);
+<?php
+    #get VideoInfo
+    $info = new VideoInfo();
 ?>
 
 <html>
     <head>
-        <title><?php echo $title;?></title>
-        <meta charset="<?php echo $charset;?>">
+        <title><?php echo $info->getTitle();?></title>
+        <meta charset="<?php echo $info->getCharset();?>">
         <link rel="stylesheet" href="./stylesheets/bootstrap-3.3.4-dist/css/bootstrap.css">
         <link rel="stylesheet" href="./stylesheets/buchert.css">
     </head>
@@ -43,7 +21,7 @@
 
 
         <script>
-            var title = "<?php echo $title;?>";
+            var title = "<?php echo $info->getTitle();?>";
 
             //alert("works "+title);
         </script>
@@ -55,7 +33,7 @@
             <div class="center"> <!-- start of page -->
 
                 <!-- target video tag where the dynamic video content is rendered in -->
-                <video id="mainScreen" width="100%" autoplay onended="loopPlaylist()" controls>
+                <video id="mainScreen" width="100%" onended="loopPlaylist()" controls>
                     <!-- source tag where the WEBM src URL can be set by javascript dynamically -->
                     <source id="mainSourceWEBM">
                     Your Browser does not support html5 video. It's time to get updatade ;)
@@ -91,21 +69,26 @@
             function loopPlaylist(){
                 //create Arrays with all the video URLs
                 var playlistWEBM = [];
-                var playlistMP4 = [];
+                var adPlaylistWEBM = [];
 
                 //create one Array for the formatted playlist with usable urls
                 var formattedPlaylistWEBM = [];
-                var formattedPlaylistMP4 = [];
+                var formattedPlaylistWEBMAds = [];
 
 
                 //get the video directories from php
                 var videoDirectoryWEBM = "";
-                var videoDirectoryMP4 = "";
-                videoDirectoryWEBM = "<?php echo $videoDirectoryWEBM;?>";
+                var adDirectoryWEBM = "";
+                videoDirectoryWEBM = "<?php echo $info->getVideoDirectoryWEBM();?>";
+                adDirectoryWEBM = "<?php echo $info->getAdDirectoryWEBM()?>";
+
+                var adInterval = 0;
+                adInterval = "<?php echo $info->getShowAdInterval();?>";
 
 
                 //get the playlists from php
-                playlistWEBM = <?php echo json_encode($playlistURLsWEBM);?>;
+                playlistWEBM = <?php echo json_encode($info->getPlaylistURLsWEBM());?>;
+                adPlaylistWEBM = <?php echo json_encode($info->getAdPlaylistWEBM());?>;
 
 
 
@@ -161,6 +144,9 @@
             }
             //initialize the static counter for the function launchVideo()
             loopPlaylist.count = 0;
+            loopPlaylist.countAd = 0;
+            loopPlaylist.videosPlayed = 0;
+            loopPlaylist.adsPlayed = 0;
 
 
             function pausePlayVideo(){

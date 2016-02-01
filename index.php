@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 
 <?php
+#all class imports
+require('models/VideoInfo.php');
+?>
+
+<?php
     global $tilte;
     global $charset;
     global $videoURL;
@@ -33,6 +38,15 @@
 
     <body>
         <div class="center">
+
+            <?php
+                $info = new VideoInfo();
+                echo $info->getAdDirectoryWEBM();
+
+                echo "<br>";
+            ?>
+
+
             <?php
             echo "My first PHP script!";
             ECHO "<p><strong>Hello </strong>test</p>";
