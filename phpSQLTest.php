@@ -68,7 +68,7 @@ $tableName = "MyGuests";
     $conn = new mysqli($servername, $username, $password, $dbName);
     #check connection
     if($conn->connect_error === TRUE){
-        echo "Error connecting to Database: ".$dbName;
+        die("Error connecting to Database: ".$dbName);
     }else{
         echo "Successfully connected to Database: ".$dbName;
     }
@@ -86,6 +86,39 @@ echo "<br><br>";
 $conn->close();
 
 echo "<br><br>";
+
+
+
+#sql statement to insert data into MyGuests
+
+$sqlInsertDataToMyGuestst = "
+INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('John','Doe','doe@buchert.onl')
+";
+
+    #open new connection
+    $conn = new mysqli($servername,$username,$password,$dbName);
+    #check connection
+    if($conn->connect_error === TRUE){
+        die("Error connecting to Database: ".$dbName);
+    } else {
+        echo "Successfully connected to Database: ".$dbName;
+    }
+
+echo "<br><br>";
+
+    #insert data into the database
+    if($conn->query($sqlInsertDataToMyGuestst) === TRUE){
+        echo "Successfully inserted data to table: ".$tableName." of database: ".$dbName;
+    } else{
+        echo "Error inserting data to table: ".$tableName." of database: ".$dbName;
+    }
+
+    #close connection
+    $conn->close();
+
+echo "<br><br>";
+
 
 
 
