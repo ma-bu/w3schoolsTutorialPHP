@@ -91,10 +91,10 @@ echo "<br><br>";
 
 #sql statement to insert data into MyGuests
 
-$sqlInsertDataToMyGuestst = "
-INSERT INTO MyGuests (firstname, lastname, email)
-VALUES ('John','Doe','doe@buchert.onl')
-";
+    $sqlInsertDataToMyGuestst = "
+    INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES ('John','Doe','doe@buchert.onl')
+    ";
 
     #open new connection
     $conn = new mysqli($servername,$username,$password,$dbName);
@@ -119,6 +119,26 @@ echo "<br><br>";
 
 echo "<br><br>";
 
+#import FTPConnection
+require('models/FTPConnection.php');
+
+#enter the path to the remote directory
+$remoteDirPath = "/var/www/html/proinfoTV";
+
+$ftp_conn = new FTPConnection();
+
+#change directory
+$ftp_conn->cd($remoteDirPath);
+
+$content = $ftp_conn->ftpListRemoteDirectory();
+
+foreach ($content as $val) {
+    echo $val."<br>";
+}
+
+
+#close ftp connection
+$ftp_conn->close();
 
 
 
